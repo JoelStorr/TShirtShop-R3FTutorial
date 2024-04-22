@@ -11,7 +11,6 @@ import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants.js";
 import { fadeAnimation, slideAnimation } from "../config/motion.js";
 
 import {
-  AIPicker,
   ColorPicker,
   CustomButton,
   FilePicker,
@@ -43,13 +42,6 @@ const Customizer = () => {
           file={file}
           setFile={setFile}
           readFile={readFile}
-        />
-      case "aipicker":
-        return <AIPicker
-          prompt={prompt}
-          setPropmpt={setPrompt}
-          generatingImage={generatingImage}
-          handleSubmit={handleSubmit}
         />
       default:
         return null
