@@ -3,12 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
 
 import config from "../config/config.js";
-import state from "../store";
+import state from "../store/index.js";
 
-import { download, stylishShirt } from "../assets";
-import { downloadCanvasToImage, reader } from "../config/helpers";
-import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
-import { fadeAnimation, slideAnimation } from "../config/motion";
+import { download, stylishShirt } from "../assets/index.js";
+import { downloadCanvasToImage, reader } from "../config/helpers.js";
+import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants.js";
+import { fadeAnimation, slideAnimation } from "../config/motion.js";
 
 import {
   AIPicker,
@@ -16,7 +16,7 @@ import {
   CustomButton,
   FilePicker,
   Tab,
-} from "../components";
+} from "../components/index.js";
 
 const Customizer = () => {
   const snap = useSnapshot(state);
@@ -45,11 +45,31 @@ const Customizer = () => {
           readFile={readFile}
         />
       case "aipicker":
-        return <AIPicker />
+        return <AIPicker
+          prompt={prompt}
+          setPropmpt={setPrompt}
+          generatingImage={generatingImage}
+          handleSubmit={handleSubmit}
+        />
       default:
         return null
     }
   }
+
+
+  const handleSubmit = async (type) => {
+    if(!prompt) return alert("Please enter a prompt");
+
+    try{
+      // call backend to generate an ai image
+    }catch(error){
+      alert(error)
+    }finally{
+      setGeneratingImage(false);
+      setActiveEditorTab("");
+    }
+  }
+
 
   const handleDecals = (type, result) =>{
     const decalType = DecalTypes[type];
