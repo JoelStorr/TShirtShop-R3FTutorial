@@ -5,7 +5,7 @@ import { useSnapshot } from "valtio";
 import config from "../config/config.js";
 import state from "../store";
 
-import { download } from "../assets";
+import { download, stylishShirt } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
@@ -21,6 +21,34 @@ import {
 const Customizer = () => {
   const snap = useSnapshot(state);
 
+  const [file, setFile] = useState("");
+
+  const [prompt, setPrompt] = useState('');
+  const [generatingImage, setGeneratingImage] = useState(false);
+
+  const [activeEditorTab, setActiveEditorTab] = useState("");
+  const [activeFilterTab, setActiveFilterTab] = useState({
+    logoShirt: true,
+    stylishShirt: false,
+  })
+  
+  
+  //show tab content based on active tab
+  const generateTabContent = () => {
+    switch(activeEditorTab){
+      case "colorpicker":
+        return <ColorPicker />
+      case "filepicker": 
+        return <FilePicker/>
+      case "aipicker":
+        return <AIPicker />
+      default:
+        return null
+    }
+  }
+
+
+
   return (
     <AnimatePresence>
       {!snap.intro && (
@@ -34,8 +62,13 @@ const Customizer = () => {
             <div className="flex items-center min-h-screen">
               <div className="editortabs-container tabs">
                 {EditorTabs.map((tab) => (
-                  <Tab key={tab.name} tab={tab} handleClick={() => {}} />
+                  <Tab key={tab.name} tab={tab} handleClick={() => {
+                    console.log("clicked:", tab.name);
+                    setActiveEditorTab(tab.name);
+                  }} />
                 ))}
+
+                {generateTabContent()}
               </div>
             </div>
           </motion.div>
@@ -63,7 +96,9 @@ const Customizer = () => {
                 tab={tab}
                 isFilterTab
                 isActiveTab=""
-                handleClick={() => {}}
+                handleClick={() => {
+                  
+                }}
               />
             ))}
           </motion.div>
