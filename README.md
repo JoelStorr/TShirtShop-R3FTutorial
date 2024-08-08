@@ -1,8 +1,4 @@
-# React + Vite
+## Über das Projekt
+Das Shirt Designer Projekt ist als Teil meines Interesses an 3D im Web entstanden und basiert auf einem JavaScript Mastery Tutorial. In diesem habe ich mich mit der React Animations Bibliothek Framer Motion beschäftigt, um der UI eine interaktivere Form zu geben. Hierbei setzt das Projekt auf das React Three Fiber Paket (R3F) um das 3D nahtlos in das React Ökosystem einzubinden.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Besonders interessant war hierbei das Verändern von 3D Objekten auf Basis der Nutzereingabe und das Platzieren von Bildern auf dem 3D Objekt.
